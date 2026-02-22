@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Welcome to DualMint</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: #F4F2EE;
+      font-family: 'DM Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .email-wrapper {
+      max-width: 620px;
+      margin: 40px auto;
+      background: #FAFAF7;
+      border: 1px solid #E5E2DA;
+      border-radius: 2px;
+      overflow: hidden;
+      box-shadow: 0 4px 40px rgba(0,0,0,0.06);
+    }
+
+    /* ── HEADER ── */
+    .header {
+      background: #0C0C0A;
+      padding: 32px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 3px solid #C8F067;
+    }
+
+    .logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      color: #FAFAF7;
+      letter-spacing: -0.5px;
+      font-weight: 500;
+    }
+
+    .logo-dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: #C8F067;
+      border-radius: 50%;
+      margin-left: 3px;
+      vertical-align: middle;
+      position: relative;
+      top: -2px;
+    }
+
+    .header-badge {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      color: #C8F067;
+      text-transform: uppercase;
+      border: 1px solid rgba(200, 240, 103, 0.3);
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+
+    /* ── HERO BAND ── */
+    .hero-band {
+      background: #C8F067;
+      padding: 10px 48px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero-band span {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #0C0C0A;
+    }
+
+    .band-dot {
+      width: 4px;
+      height: 4px;
+      background: #0C0C0A;
+      border-radius: 50%;
+      opacity: 0.4;
+    }
+
+    /* ── MAIN BODY ── */
+    .body-content {
+      padding: 56px 48px 40px;
+    }
+
+    .eyebrow {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #8A8680;
+      margin-bottom: 18px;
+    }
+
+    .headline {
+      font-family: 'Playfair Display', serif;
+      font-size: 38px;
+      line-height: 1.15;
+      color: #0C0C0A;
+      font-weight: 500;
+      letter-spacing: -0.5px;
+      margin-bottom: 10px;
+    }
+
+    .headline em {
+      font-style: italic;
+      color: #3D6B00;
+    }
+
+    .subhead {
+      font-size: 14px;
+      color: #6A6660;
+      line-height: 1.7;
+      margin-bottom: 36px;
+      font-weight: 300;
+      max-width: 460px;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      height: 1px;
+      background: linear-gradient(to right, #E5E2DA 0%, transparent 100%);
+      margin-bottom: 36px;
+    }
+
+    /* ── STATS ROW ── */
+    .stats-row {
+      display: flex;
+      gap: 0;
+      margin-bottom: 40px;
+      border: 1px solid #E5E2DA;
+    }
+
+    .stat-cell {
+      flex: 1;
+      padding: 20px 22px;
+      text-align: center;
+      border-right: 1px solid #E5E2DA;
+      background: #FFFFFF;
+    }
+
+    .stat-cell:last-child { border-right: none; }
+
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      font-weight: 600;
+      color: #0C0C0A;
+      letter-spacing: -0.5px;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 10px;
+      color: #8A8680;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-top: 5px;
+      font-weight: 500;
+    }
+
+    /* ── STEPS ── */
+    .steps-title {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #8A8680;
+      margin-bottom: 20px;
+    }
+
+    .step-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+
+    .step-num {
+      width: 28px;
+      height: 28px;
+      background: #0C0C0A;
+      color: #C8F067;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 500;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .step-body {}
+
+    .step-body strong {
+      display: block;
+      font-size: 14px;
+      color: #0C0C0A;
+      font-weight: 500;
+      margin-bottom: 2px;
+    }
+
+    .step-body p {
+      font-size: 13px;
+      color: #7A7670;
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      margin: 40px 0 0;
+      background: #0C0C0A;
+      padding: 36px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .cta-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      color: #FAFAF7;
+      font-weight: 400;
+      line-height: 1.3;
+    }
+
+    .cta-text em {
+      color: #C8F067;
+      font-style: italic;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      background: #C8F067;
+      color: #0C0C0A;
+      padding: 13px 28px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      white-space: nowrap;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    /* ── FEATURES STRIP ── */
+    .features-strip {
+      padding: 32px 48px;
+      background: #F0EDE7;
+      border-top: 1px solid #E5E2DA;
+    }
+
+    .features-strip-title {
+      font-size: 10px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #8A8680;
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    .feature-row {
+      display: flex;
+      gap: 24px;
+    }
+
+    .feature-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: #3A3A38;
+      font-weight: 400;
+    }
+
+    .pill-icon {
+      width: 18px;
+      height: 18px;
+      background: #0C0C0A;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      padding: 30px 48px;
+      border-top: 1px solid #E5E2DA;
+      background: #FAFAF7;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 16px;
+    }
+
+    .footer-links a {
+      font-size: 11px;
+      color: #8A8680;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+    }
+
+    .footer-links a:hover { color: #0C0C0A; }
+
+    .footer-copy {
+      font-size: 11px;
+      color: #B0ADA8;
+      line-height: 1.7;
+    }
+
+    .footer-copy a {
+      color: #8A8680;
+      text-decoration: underline;
+    }
+
+    /* ── TICKER ── */
+    .ticker {
+      background: #0C0C0A;
+      padding: 9px 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .ticker-inner {
+      display: inline-flex;
+      gap: 40px;
+      animation: scroll 22s linear infinite;
+    }
+
+    .ticker span {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(250, 250, 247, 0.45);
+      font-weight: 500;
+    }
+
+    .ticker .accent {
+      color: #C8F067;
+      opacity: 1;
+    }
+
+    @keyframes scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="email-wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="logo-text">DualMint<span class="logo-dot"></span></div>
+    <div class="header-badge">Account Activated</div>
+  </div>
+
+  <!-- TICKER -->
+  <div class="ticker">
+    <div class="ticker-inner">
+      <span>Real Yield</span><span class="accent">●</span>
+      <span>Essential Businesses</span><span class="accent">●</span>
+      <span>Tokenised Cashflow</span><span class="accent">●</span>
+      <span>25%+ Returns</span><span class="accent">●</span>
+      <span>15+ Geographies</span><span class="accent">●</span>
+      <span>$50M+ AUA</span><span class="accent">●</span>
+      <span>Real Yield</span><span class="accent">●</span>
+      <span>Essential Businesses</span><span class="accent">●</span>
+      <span>Tokenised Cashflow</span><span class="accent">●</span>
+      <span>25%+ Returns</span><span class="accent">●</span>
+      <span>15+ Geographies</span><span class="accent">●</span>
+      <span>$50M+ AUA</span><span class="accent">●</span>
+    </div>
+  </div>
+
+  <!-- HERO BAND -->
+  <div class="hero-band">
+    <span>Welcome aboard</span>
+    <div class="band-dot"></div>
+    <span>Boringly Reliable Since Day One</span>
+    <div class="band-dot"></div>
+    <span>explore.dualmint.com</span>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="body-content">
+    <div class="eyebrow">Welcome, {{First Name}}</div>
+    <h1 class="headline">
+      Yield you can<br><em>actually understand.</em>
+    </h1>
+    <p class="subhead">
+      You've joined a platform that's quietly different. No fantasy APY. No speculation. Just everyday businesses — laundromats, EV chargers, air systems — turning real revenue into your returns.
+    </p>
+
+    <div class="divider"></div>
+
+    <!-- STATS -->
+    <div class="stats-row">
+      <div class="stat-cell">
+        <div class="stat-num">25%+</div>
+        <div class="stat-label">Real Yield</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">$50M+</div>
+        <div class="stat-label">Assets Under Access</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">$50</div>
+        <div class="stat-label">Min Investment</div>
+      </div>
+    </div>
+
+    <!-- STEPS -->
+    <div class="steps-title">Your next steps</div>
+
+    <div class="step-item">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <strong>Browse Live Assets</strong>
+        <p>Explore our curated marketplace of income-generating businesses — each audited, verified, and onchain.</p>
+      </div>
+    </div>
+
+    <div class="step-item">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <strong>Pick What Fits You</strong>
+        <p>Choose assets that align with your values and financial goals. Start from as little as $50.</p>
+      </div>
+    </div>
+
+    <div class="step-item">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <strong>Watch Your Wealth Grow</strong>
+        <p>Receive USDC yield distributions — typically on the last business day of each month — direct to your wallet.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CTA BLOCK -->
+  <div class="cta-section">
+    <div class="cta-text">
+      Ready to own<br>the <em>cashflow?</em>
+    </div>
+    <a href="https://explore.dualmint.com" class="cta-btn">Explore Live Assets →</a>
+  </div>
+
+  <!-- FEATURES STRIP -->
+  <div class="features-strip">
+    <div class="features-strip-title">Why it's different</div>
+    <div class="feature-row">
+      <div class="feature-pill">
+        <div class="pill-icon">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#C8F067" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        Revenue-backed yield
+      </div>
+      <div class="feature-pill">
+        <div class="pill-icon">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#C8F067" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        Fully audited assets
+      </div>
+      <div class="feature-pill">
+        <div class="pill-icon">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#C8F067" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        Onchain transparency
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-links">
+      <a href="https://explore.dualmint.com">Marketplace</a>
+      <a href="https://www.dualmint.com/boring-blog">Blog</a>
+      <a href="https://dualmint.s3.ap-southeast-1.amazonaws.com/media/dualmint-privacy-policy.pdf">Privacy Policy</a>
+      <a href="https://dualmint.s3.ap-southeast-1.amazonaws.com/media/dualmint-terms-of-service.pdf">Terms</a>
+    </div>
+    <div class="footer-copy">
+      © 2026 Dualmint Ltd. All rights reserved.<br>
+      You're receiving this because you signed up at <a href="https://dualmint.com">dualmint.com</a>.<br>
+      Questions? Email us at <a href="mailto:support@dualmint.com">support@dualmint.com</a>
+      &nbsp;·&nbsp; <a href="#">Unsubscribe</a>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
