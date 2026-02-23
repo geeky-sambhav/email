@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>You're in the Queue — DualMint</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #f4f5f0;
+      font-family: 'DM Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrapper {
+      max-width: 540px;
+      margin: 32px auto;
+      background: #ffffff;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.06), 0 1px 4px rgba(0,0,0,0.04);
+      border: 1px solid #eaeae6;
+    }
+
+    /* ── TOP BAR ── */
+    .topbar {
+      background: #c7ea36;
+      padding: 10px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .logo-box {
+      width: 26px;
+      height: 26px;
+      background: #1a1a1a;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      font-weight: 700;
+      color: #c7ea36;
+      letter-spacing: -0.5px;
+    }
+
+    .logo-name {
+      font-family: 'Space Mono', monospace;
+      font-size: 13px;
+      font-weight: 700;
+      color: #1a1a1a;
+      letter-spacing: -0.3px;
+    }
+
+    .topbar-label {
+      font-size: 10px;
+      font-weight: 700;
+      font-family: 'Space Mono', monospace;
+      color: #1a1a1a;
+      opacity: 0.6;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 30px 28px 22px;
+      background: #fff;
+      border-bottom: 1px solid #f0f0ec;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      right: -80px;
+      width: 240px;
+      height: 240px;
+      background: radial-gradient(circle, rgba(199,234,54,0.18) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #f4f9e0;
+      border: 1px solid #ddf060;
+      border-radius: 100px;
+      padding: 4px 11px 4px 7px;
+      margin-bottom: 14px;
+    }
+
+    .pulse-dot {
+      width: 7px;
+      height: 7px;
+      background: #8ab400;
+      border-radius: 50%;
+    }
+
+    .status-text {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: #6a9400;
+      font-family: 'Space Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .hero-title {
+      font-family: 'Space Mono', monospace;
+      font-size: 27px;
+      font-weight: 700;
+      color: #111;
+      line-height: 1.12;
+      letter-spacing: -1px;
+      margin-bottom: 10px;
+    }
+
+    .hero-title .hi {
+      display: inline-block;
+      background: #c7ea36;
+      border-radius: 6px;
+      padding: 1px 8px;
+      color: #1a1a1a;
+    }
+
+    .hero-sub {
+      font-size: 13px;
+      color: #888;
+      line-height: 1.6;
+      max-width: 360px;
+    }
+
+    /* ── PROJECT CARD ── */
+    .section {
+      padding: 20px 28px;
+    }
+
+    .section-label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #bbb;
+      font-family: 'Space Mono', monospace;
+      margin-bottom: 10px;
+    }
+
+    .pcard {
+      border: 1.5px solid #ebebe6;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #fafaf7;
+    }
+
+    .pcard-top {
+      padding: 14px 16px 12px;
+    }
+
+    .pcard-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .pcard-meta {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .pcard-icon {
+      width: 34px;
+      height: 34px;
+      background: #c7ea36;
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+
+    .pcard-name {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: #111;
+      letter-spacing: -0.3px;
+    }
+
+    .pcard-loc {
+      font-size: 11px;
+      color: #aaa;
+      margin-top: 1px;
+    }
+
+    .incoming-tag {
+      background: #f4f4f0;
+      border: 1px solid #e4e4e0;
+      border-radius: 100px;
+      padding: 3px 10px;
+      font-size: 10px;
+      font-weight: 700;
+      color: #555;
+      font-family: 'Space Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+
+    .pcard-desc {
+      font-size: 12px;
+      color: #777;
+      line-height: 1.5;
+    }
+
+    .pcard-stats {
+      display: flex;
+      border-top: 1px solid #ebebe6;
+    }
+
+    .pstat {
+      flex: 1;
+      padding: 10px 16px;
+      border-right: 1px solid #ebebe6;
+    }
+
+    .pstat:last-child { border-right: none; }
+
+    .pstat-label {
+      font-size: 10px;
+      color: #bbb;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 3px;
+    }
+
+    .pstat-val {
+      font-size: 15px;
+      font-weight: 700;
+      font-family: 'Space Mono', monospace;
+      color: #111;
+      letter-spacing: -0.5px;
+    }
+
+    .pstat-val.green { color: #5c8f00; }
+
+    /* ── CONFIRMED CARD ── */
+    .confirmed-card {
+      margin: 0 28px 20px;
+      background: #f7fce6;
+      border: 1.5px solid #d6f060;
+      border-radius: 14px;
+      padding: 16px 18px;
+    }
+
+    .confirmed-head {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin-bottom: 14px;
+    }
+
+    .check-circle {
+      width: 20px;
+      height: 20px;
+      background: #c7ea36;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      color: #3a5a00;
+      font-weight: 700;
+    }
+
+    .confirmed-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: #3a5a00;
+      font-family: 'Space Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .cstep {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 7px 0;
+    }
+
+    .cstep + .cstep {
+      border-top: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .cstep-num {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      font-weight: 700;
+      font-family: 'Space Mono', monospace;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .cstep-num.done { background: #c7ea36; color: #3a5a00; }
+    .cstep-num.todo { background: #e8e8e3; color: #aaa; }
+
+    .cstep-body strong {
+      font-size: 12px;
+      font-weight: 700;
+      color: #2a2a2a;
+      display: block;
+      margin-bottom: 1px;
+    }
+
+    .cstep-body span {
+      font-size: 11px;
+      color: #999;
+      line-height: 1.4;
+    }
+
+    /* ── TILES ── */
+    .tiles {
+      padding: 0 28px 20px;
+    }
+
+    .tile-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+    }
+
+    .tile {
+      background: #fafaf7;
+      border: 1px solid #eaeae6;
+      border-radius: 11px;
+      padding: 12px;
+      text-align: center;
+    }
+
+    .tile-emoji { font-size: 17px; margin-bottom: 5px; }
+
+    .tile-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: #222;
+      margin-bottom: 3px;
+    }
+
+    .tile-desc {
+      font-size: 10px;
+      color: #bbb;
+      line-height: 1.4;
+    }
+
+    /* ── CTA ── */
+    .cta {
+      padding: 0 28px 24px;
+      text-align: center;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      background: #c7ea36;
+      color: #1a1a1a;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      padding: 12px 30px;
+      border-radius: 100px;
+      letter-spacing: -0.2px;
+    }
+
+    .cta-hint {
+      font-size: 11px;
+      color: #ccc;
+      margin-top: 9px;
+    }
+
+    .cta-hint a {
+      color: #888;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      border-top: 1px solid #f0f0ec;
+      padding: 16px 28px;
+      background: #fafaf7;
+      text-align: center;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 9px;
+    }
+
+    .footer-links a {
+      font-size: 11px;
+      color: #bbb;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .footer-copy {
+      font-size: 10.5px;
+      color: #ccc;
+      line-height: 1.6;
+    }
+
+    .footer-copy a { color: #bbb; text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<div class="wrapper">
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="logo">
+      <div class="logo-box">DM</div>
+      <div class="logo-name">DualMint</div>
+    </div>
+    <div class="topbar-label">Queue Confirmed</div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="status-pill">
+      <div class="pulse-dot"></div>
+      <div class="status-text">You're In</div>
+    </div>
+    <div class="hero-title">
+      You've joined<br/>
+      the <span class="hi">queue ⚡</span>
+    </div>
+    <div class="hero-sub">
+      You're officially queued for an incoming asset on DualMint. We'll notify you the moment it opens for investment.
+    </div>
+  </div>
+
+  <!-- PROJECT CARD -->
+  <div class="section">
+    <div class="section-label">Queued Asset</div>
+    <div class="pcard">
+      <div class="pcard-top">
+        <div class="pcard-head">
+          <div class="pcard-meta">
+            <div class="pcard-icon">⚡</div>
+            <div>
+              <div class="pcard-name">BORING INDEX VAULT</div>
+              <div class="pcard-loc">📍 </div>
+            </div>
+          </div>
+          <div class="incoming-tag">Incoming</div>
+        </div>
+        <div class="pcard-desc">The Boring Index Vault is designed to provide steady, predictable returns by investing in low-risk, high-quality assets</div>
+      </div>
+      <div class="pcard-stats">
+        <div class="pstat">
+          <div class="pstat-label">Hist. Yield</div>
+          <div class="pstat-val green">5.2%</div>
+        </div>
+        <div class="pstat">
+          <div class="pstat-label">Boring Index™</div>
+          <div class="pstat-val">8<span style="font-size:10px;color:#ccc;font-family:'DM Sans',sans-serif;">/10</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONFIRMED STEPS -->
+  <div class="confirmed-card">
+    <div class="confirmed-head">
+      <div class="check-circle">✓</div>
+      <div class="confirmed-title">Queue Confirmed</div>
+    </div>
+    <div>
+      <div class="cstep">
+        <div class="cstep-num done">✓</div>
+        <div class="cstep-body">
+          <strong>Joined Queue</strong>
+          <span>You're officially in line for this asset.</span>
+        </div>
+      </div>
+      <div class="cstep">
+        <div class="cstep-num todo">2</div>
+        <div class="cstep-body">
+          <strong>Asset Goes Live</strong>
+          <span>We'll email you the moment it opens for investment.</span>
+        </div>
+      </div>
+      <div class="cstep">
+        <div class="cstep-num todo">3</div>
+        <div class="cstep-body">
+          <strong>Invest & Earn</strong>
+          <span>Complete your investment and start earning steady yield.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHILE YOU WAIT -->
+  <div class="tiles">
+    <div class="section-label">While You Wait</div>
+    <div class="tile-grid">
+      <div class="tile">
+        <div class="tile-emoji">🏪</div>
+        <div class="tile-title">Explore</div>
+        <div class="tile-desc">Browse other live assets on our marketplace.</div>
+      </div>
+      <div class="tile">
+        <div class="tile-emoji">🔔</div>
+        <div class="tile-title">Stay Notified</div>
+        <div class="tile-desc">You'll get an email the moment this opens.</div>
+      </div>
+      <div class="tile">
+        <div class="tile-emoji">📖</div>
+        <div class="tile-title">Learn</div>
+        <div class="tile-desc">Understand how boring businesses generate yield.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta">
+    <a href="https://explore.dualmint.com" class="cta-btn">Browse More Assets →</a>
+    <div class="cta-hint">Questions? <a href="mailto:hello@dualmint.com">hello@dualmint.com</a></div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-links">
+      <a href="https://dualmint.com">Website</a>
+      <a href="https://explore.dualmint.com">Marketplace</a>
+      <a href="https://dualmint.com/faq">FAQ</a>
+      <a href="{{UNSUBSCRIBE_LINK}}">Unsubscribe</a>
+    </div>
+    <div class="footer-copy">
+      © 2025 DualMint · <a href="https://dualmint.com/privacy">Privacy</a> · <a href="https://dualmint.com/terms">Terms</a><br/>
+      You received this because you joined a queue at explore.dualmint.com
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

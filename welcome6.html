@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <title>Welcome to DualMint</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    /*
+      DualMint Green Palette
+      ──────────────────────
+      #c7ea36  → lime-green PRIMARY  (CTAs, stats strip, hero accents)
+      #8aaa10  → olive-dark          (step numbers, eyebrow text, cite)
+      #2e3d06  → deep forest         (quote body text, heavy contrast)
+      #f4fbd0  → pale mint           (quote background)
+      rgba(199,234,54,0.18) → ghost green (tag pill bg, glow blobs)
+    */
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: #F0EDE6;
+      font-family: 'Instrument Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      padding: 40px 16px;
+      min-height: 100vh;
+    }
+
+    .email-wrapper { max-width: 600px; margin: 0 auto; }
+
+    /* ── Top bar ── */
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 0 28px;
+    }
+
+    .logo-wordmark {
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px;
+      letter-spacing: -0.5px;
+      color: #111;
+      text-decoration: none;
+    }
+
+    .tag-pill {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      color: #6e9200;
+      background: rgba(199,234,54,0.18);
+      border: 1px solid rgba(199,234,54,0.50);
+      border-radius: 100px;
+      padding: 5px 13px;
+      text-transform: uppercase;
+    }
+
+    /* ── Hero card ── */
+    .hero-card {
+      background: #111110;
+      border-radius: 20px 20px 0 0;
+      overflow: hidden;
+      position: relative;
+      padding: 52px 48px 48px;
+    }
+
+    .noise-overlay {
+      position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: 0.55; pointer-events: none;
+    }
+
+    /* Subtle green grid */
+    .grid-lines {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(199,234,54,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(199,234,54,0.04) 1px, transparent 1px);
+      background-size: 44px 44px;
+      pointer-events: none;
+    }
+
+    /* Green glow blobs */
+    .blob-1 {
+      position: absolute;
+      width: 380px; height: 380px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(199,234,54,0.18) 0%, transparent 68%);
+      top: -100px; right: -80px;
+      pointer-events: none;
+    }
+
+    .blob-2 {
+      position: absolute;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(199,234,54,0.09) 0%, transparent 70%);
+      bottom: -20px; left: 20px;
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      font-weight: 500;
+      color: #c7ea36;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 22px; height: 1px;
+      background: #c7ea36;
+      opacity: 0.7;
+    }
+
+    .hero-headline {
+      font-family: 'DM Serif Display', serif;
+      font-size: 46px;
+      line-height: 1.08;
+      color: #F5F0E8;
+      letter-spacing: -1.5px;
+      position: relative;
+      margin-bottom: 10px;
+    }
+
+    .hero-headline em {
+      font-style: italic;
+      color: #c7ea36;
+    }
+
+    .hero-subline {
+      font-family: 'DM Serif Display', serif;
+      font-style: italic;
+      font-size: 19px;
+      color: rgba(245,240,232,0.38);
+      margin-bottom: 38px;
+      position: relative;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      background: #c7ea36;
+      color: #111110;
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      padding: 14px 28px;
+      border-radius: 100px;
+      text-decoration: none;
+      position: relative;
+    }
+
+    .hero-cta-ghost {
+      display: inline-block;
+      margin-left: 16px;
+      color: rgba(199,234,54,0.48);
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      text-decoration: none;
+      position: relative;
+    }
+
+    .hero-cta-ghost::after { content: ' →'; }
+
+    /* ── Stats strip — vivid lime green ── */
+    .stats-strip {
+      background: #c7ea36;
+      padding: 22px 48px;
+    }
+
+    .stats-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .stat-item { text-align: center; flex: 1; }
+
+    .stat-item + .stat-item {
+      border-left: 1px solid rgba(17,17,16,0.16);
+    }
+
+    .stat-val {
+      font-family: 'DM Serif Display', serif;
+      font-size: 26px;
+      color: #111110;
+      letter-spacing: -0.5px;
+      display: block;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      font-weight: 500;
+      color: rgba(17,17,16,0.52);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      display: block;
+      margin-top: 5px;
+    }
+
+    /* ── Body card ── */
+    .body-card {
+      background: #FFFFFF;
+      padding: 44px 48px;
+    }
+
+    .greeting {
+      font-family: 'DM Serif Display', serif;
+      font-size: 28px;
+      color: #111;
+      letter-spacing: -0.5px;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    .body-text {
+      font-size: 15px;
+      line-height: 1.78;
+      color: #4A4742;
+      margin-bottom: 14px;
+    }
+
+    .body-text strong { color: #111; font-weight: 600; }
+
+    /* Inline green chip for key stat */
+    .green-chip {
+      display: inline-block;
+      background: rgba(199,234,54,0.15);
+      color: #5a7800;
+      font-weight: 600;
+      border-radius: 4px;
+      padding: 1px 7px;
+      font-size: 14px;
+    }
+
+    /* ── Steps ── */
+    .steps-heading {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      font-weight: 500;
+      color: #bbb;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      margin: 36px 0 16px;
+    }
+
+    .step-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 18px 0;
+      border-bottom: 1px solid #F0EDE6;
+    }
+
+    .step-row:first-of-type { border-top: 1px solid #F0EDE6; }
+
+    .step-number {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      color: #8aaa10;
+      min-width: 28px;
+      padding-top: 2px;
+    }
+
+    .step-title {
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: #111;
+      margin-bottom: 3px;
+    }
+
+    .step-desc {
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 13px;
+      color: #888;
+      line-height: 1.6;
+    }
+
+    /* ── Quote block — pale mint bg, green left border ── */
+    .highlight-quote {
+      background: #f4fbd0;
+      border-left: 3px solid #c7ea36;
+      border-radius: 0 12px 12px 0;
+      padding: 22px 24px;
+      margin: 36px 0;
+    }
+
+    .highlight-quote p {
+      font-family: 'DM Serif Display', serif;
+      font-style: italic;
+      font-size: 18px;
+      color: #2e3d06;
+      line-height: 1.5;
+    }
+
+    .highlight-quote cite {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      color: #8aaa10;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      display: block;
+      margin-top: 12px;
+      font-style: normal;
+    }
+
+    /* ── CTA block ── */
+    .cta-block {
+      text-align: center;
+      padding: 0px 0 8px;
+    }
+
+    /* Dark pill, green text */
+    .main-cta-btn {
+      display: inline-block;
+      background: #111110;
+      color: #c7ea36;
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      padding: 16px 40px;
+      border-radius: 100px;
+      text-decoration: none;
+    }
+
+    .cta-note {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      color: #bbb;
+      margin-top: 14px;
+      letter-spacing: 0.08em;
+    }
+
+    /* ── Footer ── */
+    .footer-card {
+      background: #F8F6F1;
+      border-radius: 0 0 20px 20px;
+      padding: 32px 48px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-link {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      font-weight: 500;
+      color: #888;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .footer-divider { height: 1px; background: #E8E4DC; margin-bottom: 20px; }
+
+    .footer-meta {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      color: #bbb;
+      line-height: 1.85;
+      letter-spacing: 0.04em;
+    }
+
+    .footer-meta a { color: #bbb; text-decoration: underline; }
+
+    /* ── Live pulse badge ── */
+    .rec-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      color: #c7ea36;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      margin-bottom: 20px;
+    }
+
+    .rec-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #c7ea36;
+      box-shadow: 0 0 0 0 rgba(199,234,54,0.55);
+      animation: pulse-green 1.8s ease-in-out infinite;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    @keyframes pulse-green {
+      0%   { box-shadow: 0 0 0 0   rgba(199,234,54,0.6); }
+      60%  { box-shadow: 0 0 0 8px rgba(199,234,54,0);   }
+      100% { box-shadow: 0 0 0 0   rgba(199,234,54,0);   }
+    }
+
+    @media (max-width: 480px) {
+      .hero-card, .body-card, .footer-card, .stats-strip {
+        padding-left: 24px; padding-right: 24px;
+      }
+      .hero-headline { font-size: 32px; }
+      .stat-val { font-size: 20px; }
+      .hero-cta-ghost { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="email-wrapper">
+
+  <!-- Top bar -->
+  <div class="top-bar">
+    <span class="logo-wordmark">DualMint</span>
+    <span class="tag-pill">Welcome ✦ Confirmed</span>
+  </div>
+
+  <!-- ── HERO ── -->
+  <div class="hero-card">
+    <div class="noise-overlay"></div>
+    <div class="grid-lines"></div>
+    <div class="blob-1"></div>
+    <div class="blob-2"></div>
+
+    <div class="rec-badge">
+      <span class="rec-dot"></span> Live on DualMint
+    </div>
+
+    <h1 class="hero-headline">
+      You are now officially<br/><em>Boring!</em>
+    </h1>
+    <p class="hero-subline">Welcome to the revolution you'll never notice.</p>
+
+    <a href="https://explore.dualmint.com" class="hero-cta">Explore Live Assets</a>
+    <a href="https://dualmint.com" class="hero-cta-ghost">Visit Site</a>
+  </div>
+
+  <!-- ── STATS STRIP ── -->
+  <div class="stats-strip">
+    <div class="stats-inner">
+      <div class="stat-item">
+        <span class="stat-val">25%+</span>
+        <span class="stat-label">Real Yield</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-val">15+</span>
+        <span class="stat-label">Geographies</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-val">$50M+</span>
+        <span class="stat-label">Assets Under Access</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-val">$50</span>
+        <span class="stat-label">Min. Investment</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── BODY ── -->
+  <div class="body-card">
+
+    <h2 class="greeting">Hello, Sambhav👋</h2>
+
+    <p class="body-text">
+      You've just joined a small group of people who believe the most reliable investments
+      aren't the flashiest — they're the <strong>essential businesses</strong> that keep communities
+      running every single day.
+    </p>
+
+    <p class="body-text">
+      At DualMint, we tokenise real cash-generating businesses — laundromats, EV chargers,
+      community essentials — and make their yields accessible to everyone, starting at just
+      <span class="green-chip">$50</span>.
+      Your account is ready. Real yield awaits.
+    </p>
+
+    <div class="highlight-quote">
+      <p>"We celebrate the familiar. Assets that stay open in recessions, generate daily revenue, and don't care about market sentiment."</p>
+      <cite>— The DualMint Thesis</cite>
+    </div>
+
+
+    <div class="cta-block">
+      <a href="https://explore.dualmint.com" class="main-cta-btn">Start Exploring Assets →</a>
+      <p class="cta-note">No minimum lock-up. Trade anytime on the marketplace.</p>
+    </div>
+
+  </div>
+
+  <!-- ── FOOTER ── -->
+  <div class="footer-card">
+    <div class="footer-links">
+      <a href="https://explore.dualmint.com" class="footer-link">Marketplace</a>
+      <a href="https://dualmint.com/boring-blog" class="footer-link">Blog</a>
+      <a href="https://dualmint.s3.ap-southeast-1.amazonaws.com/media/DualMint-Audit-Report-1.pdf" class="footer-link">Audit Report</a>
+      <a href="https://dualmint.s3.ap-southeast-1.amazonaws.com/media/dualmint-privacy-policy.pdf" class="footer-link">Privacy</a>
+      <a href="https://dualmint.s3.ap-southeast-1.amazonaws.com/media/dualmint-terms-of-service.pdf" class="footer-link">Terms</a>
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-meta">
+      © 2026 Dualmint Ltd. All rights reserved.<br/>
+      You're receiving this because you signed up at <a href="https://dualmint.com">dualmint.com</a>.<br/>
+      Questions? Write to <a href="mailto:support@dualmint.com">support@dualmint.com</a><br/>
+      <a href="{{unsubscribe_link}}">Unsubscribe</a> · <a href="{{preferences_link}}">Email Preferences</a>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

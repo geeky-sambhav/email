@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Welcome to the Boringly Reliable Newsletter — DualMint</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Manrope:wght@300;400;500;600;700&display=swap');
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: #F0EDE6;
+      font-family: 'Manrope', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      padding: 40px 16px;
+    }
+
+    .email-wrapper {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* ── TOP META BAR ── */
+    .meta-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 4px 16px;
+    }
+    .meta-bar .channel-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      color: #8A8478;
+      text-transform: uppercase;
+    }
+    .meta-bar .rec-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      color: #1A1A18;
+    }
+    .rec-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #c7ea36;
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    /* ── MAIN CARD ── */
+    .card {
+      background: #FAFAF7;
+      border: 1px solid #E0DDD5;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      background: #FFFFFF;
+      padding: 32px 40px 28px;
+      position: relative;
+      overflow: hidden;
+    }
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(199,234,54,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0,0,0,0.06), transparent);
+    }
+
+    .logo-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 36px;
+    }
+    .logo-wordmark {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 700;
+      font-size: 17px;
+      letter-spacing: -0.02em;
+      color: #1A1A18;
+    }
+    .logo-wordmark span {
+      color: #6b8c00;
+    }
+    .channel-chip {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      color: #6B6B65;
+      border: 1px solid #D8D8D0;
+      border-radius: 2px;
+      padding: 4px 8px;
+      text-transform: uppercase;
+    }
+
+    .header-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: #8aad00;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .header-headline {
+      font-family: 'DM Serif Display', serif;
+      font-size: 36px;
+      line-height: 1.1;
+      color: #1A1A18;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+    .header-headline em {
+      font-style: italic;
+      color: #6b8c00;
+    }
+
+    /* ── TICKER STRIP ── */
+    .ticker-strip {
+      background: #F2F2EE;
+      border-top: 1px solid #E4E4DE;
+      padding: 10px 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .ticker-inner {
+      display: inline-block;
+      animation: ticker 22s linear infinite;
+    }
+    .ticker-inner span {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      color: #5A5A54;
+      text-transform: uppercase;
+      margin: 0 28px;
+    }
+    .ticker-inner span.green { color: #a8cc10; }
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ── BODY ── */
+    .body {
+      padding: 44px 40px;
+    }
+
+    .welcome-label {
+      display: inline-block;
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #6b8c00;
+      background: #F4FACC;
+      border: 1px solid #D8EE60;
+      border-radius: 2px;
+      padding: 5px 10px;
+      margin-bottom: 24px;
+    }
+
+    .body-headline {
+      font-family: 'DM Serif Display', serif;
+      font-size: 26px;
+      line-height: 1.25;
+      color: #111110;
+      margin-bottom: 6px;
+      letter-spacing: -0.01em;
+    }
+    .body-headline em {
+      font-style: italic;
+      color: #6b8c00;
+    }
+
+    .divider-line {
+      height: 1px;
+      background: linear-gradient(90deg, #E0DDD5, transparent);
+      margin: 24px 0;
+    }
+
+    .body-text {
+      font-size: 14px;
+      line-height: 1.75;
+      color: #4A4A44;
+      font-weight: 400;
+      margin-bottom: 18px;
+    }
+    .body-text strong {
+      color: #1A1A18;
+      font-weight: 600;
+    }
+
+    /* ── STAT CARDS ── */
+    .stats-grid {
+      display: flex;
+      gap: 12px;
+      margin: 32px 0;
+    }
+    .stat-card {
+      flex: 1;
+      background: #FAFAF8;
+      border-radius: 3px;
+      padding: 20px 18px;
+      position: relative;
+      overflow: hidden;
+    }
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #c7ea36, transparent);
+    }
+    .stat-number {
+      font-family: 'DM Serif Display', serif;
+      font-size: 28px;
+      color: #111111;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-number sup {
+      font-size: 14px;
+      vertical-align: super;
+    }
+    .stat-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      color: #5A5A54;
+      text-transform: uppercase;
+      line-height: 1.4;
+    }
+
+    /* ── WHAT TO EXPECT SECTION ── */
+    .section-title {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #8A8478;
+      margin-bottom: 16px;
+    }
+
+    .expect-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      margin-bottom: 32px;
+    }
+    .expect-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 16px;
+      background: #F5F3EE;
+      border: 1px solid #E8E5DC;
+      border-radius: 3px;
+      transition: background 0.2s;
+    }
+    .expect-icon {
+      width: 28px;
+      height: 28px;
+      background: #c7ea36;
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .expect-icon svg {
+      width: 14px;
+      height: 14px;
+    }
+    .expect-content {}
+    .expect-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #1A1A18;
+      margin-bottom: 2px;
+      letter-spacing: -0.01em;
+    }
+    .expect-desc {
+      font-size: 12px;
+      color: #7A7A72;
+      line-height: 1.5;
+    }
+
+    /* ── CTA ── */
+    .cta-block {
+      background: #F5F8EC;
+      border-radius: 3px;
+      padding: 32px 36px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 32px;
+    }
+    .cta-block::after {
+      content: '';
+      position: absolute;
+      bottom: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 300px;
+      height: 120px;
+      background: radial-gradient(ellipse, rgba(199,234,54,0.10) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      color: #8aad00;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .cta-headline {
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px;
+      color: #1A1A18;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+    .cta-sub {
+      font-size: 12px;
+      color: #6B6B65;
+      line-height: 1.6;
+      margin-bottom: 24px;
+      max-width: 340px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cta-btn {
+      display: inline-block;
+      background: #c7ea36;
+      color: #1a1a0f;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 13px 28px;
+      border-radius: 2px;
+      font-family: 'Manrope', sans-serif;
+    }
+    .cta-btn-ghost {
+      display: inline-block;
+      color: #4A4A44;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 13px 24px;
+      font-family: 'Manrope', sans-serif;
+      border: 1px solid #CCCCBF;
+      border-radius: 2px;
+      margin-left: 10px;
+    }
+
+    /* ── SIGNED BY ── */
+    .signed-block {
+      padding: 0 0 8px;
+    }
+    .signed-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      color: #8A8478;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .signed-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 20px;
+      font-style: italic;
+      color: #1A1A18;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: #F2F2EE;
+      padding: 28px 40px;
+      border-top: 1px solid #E4E4DE;
+    }
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #DDDAD2;
+    }
+    .footer-brand {
+      font-family: 'Manrope', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: #1A1A18;
+      letter-spacing: -0.01em;
+      margin-bottom: 6px;
+    }
+    .footer-brand span { color: #6b8c00; }
+    .footer-tagline {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      color: #4A4A44;
+      text-transform: uppercase;
+    }
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+    }
+    .footer-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #5A5A54;
+      text-decoration: none;
+    }
+    .footer-links a:hover { color: #111111; }
+
+    .footer-legal {
+      font-size: 10px;
+      color: #7A7A70;
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+    .footer-unsubscribe {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      color: #7A7A70;
+      text-transform: uppercase;
+    }
+    .footer-unsubscribe a {
+      color: #5A5A54;
+      text-decoration: underline;
+    }
+
+    /* ── BOTTOM META ── */
+    .bottom-meta {
+      padding: 14px 4px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .bottom-meta span {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      color: #9A9A92;
+      text-transform: uppercase;
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 480px) {
+      body { padding: 20px 10px; }
+      .header { padding: 24px 24px 20px; }
+      .header-headline { font-size: 28px; }
+      .body { padding: 32px 24px; }
+      .stats-grid { flex-direction: column; }
+      .cta-block { padding: 24px 20px; }
+      .cta-btn-ghost { display: block; margin-left: 0; margin-top: 10px; }
+      .footer { padding: 24px; }
+      .footer-top { flex-direction: column; gap: 16px; }
+      .footer-links { align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="email-wrapper">
+
+  <!-- Meta bar -->
+  <div class="meta-bar">
+    <span class="channel-tag">Newsletter · Confirmation</span>
+    <span class="rec-badge">
+      <span class="rec-dot"></span>
+      Live Feed Active
+    </span>
+  </div>
+
+  <!-- Main Card -->
+  <div class="card">
+
+    <!-- Header -->
+    <div class="header">
+      <div class="logo-row">
+        <div class="logo-wordmark">Dual<span>Mint</span></div>
+        <div class="channel-chip">Boring Blog · CH 01</div>
+      </div>
+      <div class="header-eyebrow">Subscription Confirmed</div>
+      <div class="header-headline">
+        Welcome to<br/>
+        <em>boringly reliable</em><br/>
+        insights.
+      </div>
+    </div>
+
+    <!-- Ticker -->
+    <div class="ticker-strip">
+      <div class="ticker-inner">
+        <span>Real Yield</span>
+        <span class="green">●</span>
+        <span>Essential Businesses</span>
+        <span class="green">●</span>
+        <span>25%+ Annual Yield</span>
+        <span class="green">●</span>
+        <span>15+ Geographies</span>
+        <span class="green">●</span>
+        <span>$50M+ AUA</span>
+        <span class="green">●</span>
+        <span>Tokenised Cashflow</span>
+        <span class="green">●</span>
+        <span>Real Yield</span>
+        <span class="green">●</span>
+        <span>Essential Businesses</span>
+        <span class="green">●</span>
+        <span>25%+ Annual Yield</span>
+        <span class="green">●</span>
+        <span>15+ Geographies</span>
+        <span class="green">●</span>
+        <span>$50M+ AUA</span>
+        <span class="green">●</span>
+        <span>Tokenised Cashflow</span>
+        <span class="green">●</span>
+      </div>
+    </div>
+
+    <!-- Body -->
+    <div class="body">
+
+      <span class="welcome-label">You're In</span>
+
+      <div class="body-headline">
+        No hype. No jargon.<br/>
+        Just <em>yield you can understand.</em>
+      </div>
+
+      <div class="divider-line"></div>
+
+      <p class="body-text">
+        You've just subscribed to the DualMint Boring Blog — where we write about the unglamorous, 
+        cash-generating businesses that quietly outperform the market. Laundromats. EV chargers. 
+        Community washers. <strong>The kind of assets that don't care about market sentiment.</strong>
+      </p>
+      <p class="body-text">
+        Every newsletter is a look behind the curtain — real operating data, real yield mechanics, 
+        and transparent reporting on how community-owned businesses generate daily revenue. 
+        <strong>No speculation. No promises. Just facts.</strong>
+      </p>
+
+      <!-- Stats -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">25<sup>%+</sup></div>
+          <div class="stat-label">Real Annual<br/>Yield</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">$50M<sup>+</sup></div>
+          <div class="stat-label">Assets Under<br/>Administration</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">15<sup>+</sup></div>
+          <div class="stat-label">Active<br/>Geographies</div>
+        </div>
+      </div>
+
+      <!-- What to expect -->
+      <div class="section-title">What lands in your inbox</div>
+
+      <ul class="expect-list">
+        <li class="expect-item">
+          <div class="expect-icon">
+            <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 10L7 2L12 10" stroke="#1A1A18" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M3.5 7.5H10.5" stroke="#1A1A18" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="expect-content">
+            <div class="expect-title">Live Asset Updates</div>
+            <div class="expect-desc">Real-time performance data on active listings — wash cycles, energy savings, revenue distributions.</div>
+          </div>
+        </li>
+        <li class="expect-item">
+          <div class="expect-icon">
+            <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2" y="3" width="10" height="8" rx="1" stroke="#1A1A18" stroke-width="1.5"/>
+              <path d="M5 3V2M9 3V2" stroke="#1A1A18" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M2 6H12" stroke="#1A1A18" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <div class="expect-content">
+            <div class="expect-title">New Asset Announcements</div>
+            <div class="expect-desc">Be first to know when new tokenised businesses go live on the marketplace.</div>
+          </div>
+        </li>
+        <li class="expect-item">
+          <div class="expect-icon">
+            <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="7" cy="7" r="5" stroke="#1A1A18" stroke-width="1.5"/>
+              <path d="M7 4.5V7.5L9 9" stroke="#1A1A18" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="expect-content">
+            <div class="expect-title">Monthly Yield Reports</div>
+            <div class="expect-desc">Transparent, plain-language breakdowns of how yield was generated and distributed onchain.</div>
+          </div>
+        </li>
+        <li class="expect-item">
+          <div class="expect-icon">
+            <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 11L5 8L8 10L12 4" stroke="#1A1A18" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="expect-content">
+            <div class="expect-title">Deep-Dives on Real Assets</div>
+            <div class="expect-desc">Why a laundromat beats a meme coin. Why boring businesses compound. Written for investors, not traders.</div>
+          </div>
+        </li>
+      </ul>
+
+      <!-- CTA Block -->
+      <div class="cta-block">
+        <div class="cta-eyebrow">Explore Now</div>
+        <div class="cta-headline">While you're here,<br/>browse live assets.</div>
+        <div class="cta-sub">
+          Our marketplace has real, income-generating businesses open for investment from as little as $50.
+        </div>
+        <a href="https://explore.dualmint.com" class="cta-btn">Explore Marketplace</a>
+        <a href="https://www.dualmint.com/boring-blog" class="cta-btn-ghost">Read the Blog</a>
+      </div>
+
+      <!-- Signed by -->
+      <div class="signed-block">
+        <div class="divider-line"></div>
+        <div class="signed-label">From the desk of</div>
+        <div class="signed-name">The DualMint Team</div>
+      </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand">Dual<span>Mint</span> Ltd.</div>
+          <div class="footer-tagline">Tokenising the world's most reliable businesses</div>
+        </div>
+        <div class="footer-links">
+          <a href="https://explore.dualmint.com">Marketplace</a>
+          <a href="https://www.dualmint.com/boring-blog">Blog</a>
+          <a href="mailto:support@dualmint.com">Contact</a>
+          <a href="https://dualmint.s3.ap-southeast-1.amazonaws.com/media/dualmint-privacy-policy.pdf">Privacy Policy</a>
+        </div>
+      </div>
+      <div class="footer-legal">
+        You're receiving this email because you signed up for the DualMint newsletter via <strong style="color:#4A4A44;">dualmint.com</strong>. 
+        DualMint Ltd. is not a licensed financial advisor. Content is for informational purposes only and does not constitute investment advice.
+        Past yield performance is not indicative of future results.
+      </div>
+      <div class="footer-unsubscribe">
+        Don't want these? <a href="#">Unsubscribe here</a> · <a href="#">Update preferences</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom meta -->
+  <div class="bottom-meta">
+    <span>© 2026 Dualmint Ltd. All rights reserved.</span>
+    <span>dualmint.com</span>
+  </div>
+
+</div>
+</body>
+</html>

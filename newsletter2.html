@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome to DualMint Newsletter</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap');
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: #F2F2F0;
+      font-family: 'Manrope', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      padding: 28px 16px;
+    }
+
+    .wrapper {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    /* TOP BAR */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2px 10px;
+    }
+    .top-bar-left {
+      font-family: 'DM Mono', monospace;
+      font-size: 8.5px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #ABABAB;
+    }
+    .live-badge {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-family: 'DM Mono', monospace;
+      font-size: 8.5px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #ABABAB;
+    }
+    .live-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: #c7ea36;
+      animation: blink 2s ease-in-out infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    /* CARD */
+    .card {
+      background: #FFFFFF;
+      border: 1px solid #E8E8E6;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 1px 12px rgba(0,0,0,0.04);
+    }
+
+    /* HEADER */
+    .header {
+      padding: 28px 32px 24px;
+      border-bottom: 1px solid #F0F0EE;
+      position: relative;
+    }
+    .header-accent-bar {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: #c7ea36;
+    }
+
+    .logo-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 22px;
+    }
+    .logo {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: -0.02em;
+      color: #111111;
+    }
+    .logo-accent {
+      display: inline-block;
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: #c7ea36;
+      margin-left: 1px;
+      vertical-align: middle;
+      position: relative;
+      top: -1px;
+    }
+    .tag-chip {
+      font-family: 'DM Mono', monospace;
+      font-size: 7.5px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #BBBBBB;
+      border: 1px solid #E8E8E6;
+      border-radius: 2px;
+      padding: 3px 7px;
+      background: #FAFAFA;
+    }
+
+    .eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 8.5px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #8aaa10;
+      margin-bottom: 10px;
+    }
+    .headline {
+      font-family: 'DM Serif Display', serif;
+      font-size: 26px;
+      line-height: 1.1;
+      color: #111111;
+      letter-spacing: -0.01em;
+    }
+    .headline em {
+      font-style: italic;
+      color: #6B8010;
+    }
+
+    /* TICKER */
+    .ticker {
+      background: #F8F8F6;
+      border-bottom: 1px solid #EEEEEC;
+      padding: 7px 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .ticker-track {
+      display: inline-block;
+      animation: scroll 22s linear infinite;
+    }
+    .ticker-track span {
+      font-family: 'DM Mono', monospace;
+      font-size: 8.5px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #C8C8C4;
+      margin: 0 20px;
+    }
+    .ticker-track span.hi { color: #a8cc10; }
+    @keyframes scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* BODY */
+    .body {
+      padding: 26px 32px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: 'DM Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #6B8010;
+      background: #f4facc;
+      border: 1px solid #d8ee60;
+      border-radius: 20px;
+      padding: 4px 10px;
+      margin-bottom: 14px;
+    }
+    .pill-dot {
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: #c7ea36;
+    }
+
+    .body-head {
+      font-family: 'DM Serif Display', serif;
+      font-size: 18px;
+      line-height: 1.25;
+      color: #111111;
+      margin-bottom: 4px;
+      letter-spacing: -0.01em;
+    }
+    .body-head em { font-style: italic; color: #6B8010; }
+
+    .rule {
+      height: 1px;
+      background: #F0F0EE;
+      margin: 14px 0;
+    }
+
+    .body-text {
+      font-size: 12px;
+      line-height: 1.75;
+      color: #666666;
+      margin-bottom: 12px;
+    }
+    .body-text strong { color: #333333; font-weight: 600; }
+
+    /* STATS */
+    .stats {
+      display: flex;
+      gap: 6px;
+      margin: 18px 0;
+    }
+    .stat {
+      flex: 1;
+      background: #FAFAF8;
+      border: 1px solid #EEEEEC;
+      border-radius: 5px;
+      padding: 13px 11px;
+      position: relative;
+    }
+    .stat::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: #c7ea36;
+      border-radius: 5px 5px 0 0;
+    }
+    .stat-val {
+      font-family: 'DM Serif Display', serif;
+      font-size: 20px;
+      color: #111111;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .stat-val sup { font-size: 10px; vertical-align: super; }
+    .stat-lbl {
+      font-family: 'DM Mono', monospace;
+      font-size: 7.5px;
+      letter-spacing: 0.12em;
+      color: #BBBBBB;
+      text-transform: uppercase;
+      line-height: 1.4;
+    }
+
+    /* LIST */
+    .list-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 7.5px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #CCCCCA;
+      margin-bottom: 8px;
+    }
+    .list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      margin-bottom: 20px;
+    }
+    .list-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 12px;
+      background: #FAFAF8;
+      border: 1px solid #EEEEEC;
+      border-radius: 4px;
+    }
+    .list-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: #c7ea36;
+      border: 1px solid #b4d820;
+      flex-shrink: 0;
+      margin-top: 4px;
+    }
+    .list-title {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #222222;
+      margin-bottom: 1px;
+      letter-spacing: -0.01em;
+    }
+    .list-desc {
+      font-size: 10.5px;
+      color: #999999;
+      line-height: 1.55;
+    }
+
+    /* CTA */
+    .cta {
+      background: #FAFAF8;
+      border: 1px solid #EEEEEC;
+      border-radius: 5px;
+      padding: 20px 22px;
+      text-align: center;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    .cta::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #c7ea36 0%, transparent 80%);
+      border-radius: 5px 5px 0 0;
+    }
+    .cta-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #a8cc10;
+      margin-bottom: 7px;
+    }
+    .cta-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 17px;
+      color: #111111;
+      margin-bottom: 5px;
+      letter-spacing: -0.01em;
+    }
+    .cta-desc {
+      font-size: 11px;
+      color: #999999;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .btn-row { display: flex; gap: 7px; justify-content: center; }
+    .btn-primary {
+      display: inline-block;
+      background: #c7ea36;
+      color: #1a1a0f;
+      text-decoration: none;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 9px 18px;
+      border-radius: 3px;
+      font-family: 'Manrope', sans-serif;
+      border: 1px solid #b4d820;
+    }
+    .btn-ghost {
+      display: inline-block;
+      color: #888888;
+      text-decoration: none;
+      font-size: 10.5px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 9px 16px;
+      font-family: 'Manrope', sans-serif;
+      border: 1px solid #E4E4E2;
+      border-radius: 3px;
+      background: #FFFFFF;
+    }
+
+    /* SIGN OFF */
+    .signoff { padding-top: 2px; }
+    .signoff-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #CCCCCA;
+      margin-bottom: 2px;
+    }
+    .signoff-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 16px;
+      font-style: italic;
+      color: #444444;
+    }
+
+    /* FOOTER */
+    .footer {
+      background: #F8F8F6;
+      border-top: 1px solid #EEEEEC;
+      padding: 18px 32px;
+    }
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #EEEEEC;
+    }
+    .footer-brand {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      color: #333333;
+      margin-bottom: 3px;
+    }
+    .footer-sub {
+      font-family: 'DM Mono', monospace;
+      font-size: 7.5px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #CCCCCA;
+    }
+    .footer-links { display: flex; gap: 12px; }
+    .footer-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #BBBBBB;
+      text-decoration: none;
+    }
+    .footer-legal {
+      font-size: 9.5px;
+      color: #BBBBBB;
+      line-height: 1.65;
+      margin-bottom: 8px;
+    }
+    .footer-legal strong { color: #999999; }
+    .footer-unsub {
+      font-family: 'DM Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #CCCCCA;
+    }
+    .footer-unsub a { color: #AAAAAA; text-decoration: underline; }
+
+    /* BOTTOM */
+    .bottom {
+      padding: 8px 2px 0;
+      display: flex;
+      justify-content: space-between;
+    }
+    .bottom span {
+      font-family: 'DM Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #CCCCCA;
+    }
+
+    @media (max-width: 460px) {
+      .header, .body, .footer { padding-left: 20px; padding-right: 20px; }
+      .headline { font-size: 21px; }
+      .stats { flex-direction: column; }
+      .btn-row { flex-direction: column; }
+      .footer-row { flex-direction: column; gap: 10px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrapper">
+
+  <div class="top-bar">
+    <span class="top-bar-left">Newsletter · Confirmation</span>
+    <span class="live-badge"><span class="live-dot"></span> Live Feed Active</span>
+  </div>
+
+  <div class="card">
+
+    <!-- Header -->
+    <div class="header">
+      <div class="header-accent-bar"></div>
+      <div class="logo-row">
+        <div class="logo">DualMint<span class="logo-accent"></span></div>
+        <div class="tag-chip">Boring Blog · CH 01</div>
+      </div>
+      <div class="eyebrow">Subscription Confirmed</div>
+      <div class="headline">Welcome to <em>boringly</em><br/>reliable insights.</div>
+    </div>
+
+    <!-- Ticker -->
+    <div class="ticker">
+      <div class="ticker-track">
+        <span>Real Yield</span><span class="hi">●</span>
+        <span>Essential Businesses</span><span class="hi">●</span>
+        <span>25%+ Annual Yield</span><span class="hi">●</span>
+        <span>15+ Geographies</span><span class="hi">●</span>
+        <span>$50M+ AUA</span><span class="hi">●</span>
+        <span>Tokenised Cashflow</span><span class="hi">●</span>
+        <span>Real Yield</span><span class="hi">●</span>
+        <span>Essential Businesses</span><span class="hi">●</span>
+        <span>25%+ Annual Yield</span><span class="hi">●</span>
+        <span>15+ Geographies</span><span class="hi">●</span>
+        <span>$50M+ AUA</span><span class="hi">●</span>
+        <span>Tokenised Cashflow</span><span class="hi">●</span>
+      </div>
+    </div>
+
+    <!-- Body -->
+    <div class="body">
+
+      <div class="pill"><span class="pill-dot"></span> You're In — Subscription Active</div>
+
+      <div class="body-head">No hype. No jargon.<br/>Just <em>yield you can understand.</em></div>
+
+      <div class="rule"></div>
+
+      <p class="body-text">
+        You've just subscribed to the DualMint Boring Blog — where we write about unglamorous, cash-generating businesses that quietly outperform. Laundromats. EV chargers. Community washers. <strong>The kind that don't care about market sentiment.</strong>
+      </p>
+      <p class="body-text">
+        Every edition is a look behind the curtain — real operating data, real yield mechanics, transparent onchain reporting. <strong>No speculation. Just facts.</strong>
+      </p>
+
+      <!-- Stats -->
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-val">25<sup>%+</sup></div>
+          <div class="stat-lbl">Real Annual<br/>Yield</div>
+        </div>
+        <div class="stat">
+          <div class="stat-val">$50M<sup>+</sup></div>
+          <div class="stat-lbl">Assets Under<br/>Administration</div>
+        </div>
+        <div class="stat">
+          <div class="stat-val">15<sup>+</sup></div>
+          <div class="stat-lbl">Active<br/>Geographies</div>
+        </div>
+      </div>
+
+      <!-- What you get -->
+      <div class="list-label">What lands in your inbox</div>
+      <ul class="list">
+        <li class="list-item">
+          <div class="list-dot"></div>
+          <div>
+            <div class="list-title">Live Asset Updates</div>
+            <div class="list-desc">Real-time performance on active listings — revenue, wash cycles, yield distributions.</div>
+          </div>
+        </li>
+        <li class="list-item">
+          <div class="list-dot"></div>
+          <div>
+            <div class="list-title">New Asset Announcements</div>
+            <div class="list-desc">Be first to know when new tokenised businesses go live on the marketplace.</div>
+          </div>
+        </li>
+        <li class="list-item">
+          <div class="list-dot"></div>
+          <div>
+            <div class="list-title">Monthly Yield Reports</div>
+            <div class="list-desc">Plain-language breakdowns of how yield was generated and distributed onchain.</div>
+          </div>
+        </li>
+        <li class="list-item">
+          <div class="list-dot"></div>
+          <div>
+            <div class="list-title">Deep-Dives on Real Assets</div>
+            <div class="list-desc">Why boring businesses compound. Written for investors, not traders.</div>
+          </div>
+        </li>
+      </ul>
+
+      <!-- CTA -->
+      <div class="cta">
+        <div class="cta-eyebrow">Explore Now</div>
+        <div class="cta-title">Browse live assets while you're here.</div>
+        <div class="cta-desc">Real, income-generating businesses open for investment from as little as $50.</div>
+        <div class="btn-row">
+          <a href="https://explore.dualmint.com" class="btn-primary">Explore Marketplace</a>
+          <a href="https://www.dualmint.com/boring-blog" class="btn-ghost">Read the Blog</a>
+        </div>
+      </div>
+
+      <!-- Sign off -->
+      <div class="signoff">
+        <div class="rule"></div>
+        <div class="signoff-label">From the desk of</div>
+        <div class="signoff-name">The DualMint Team</div>
+      </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div class="footer-row">
+        <div>
+          <div class="footer-brand">DualMint Ltd.</div>
+          <div class="footer-sub">Tokenising the world's most reliable businesses</div>
+        </div>
+        <div class="footer-links">
+          <a href="https://explore.dualmint.com">Marketplace</a>
+          <a href="https://www.dualmint.com/boring-blog">Blog</a>
+          <a href="mailto:support@dualmint.com">Contact</a>
+        </div>
+      </div>
+      <div class="footer-legal">
+        You're receiving this because you signed up at <strong>dualmint.com</strong>. DualMint Ltd. is not a licensed financial advisor. Content is informational only and does not constitute investment advice. Past yield performance is not indicative of future results.
+      </div>
+      <div class="footer-unsub">
+        <a href="#">Unsubscribe</a> · <a href="#">Update preferences</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="bottom">
+    <span>© 2026 Dualmint Ltd.</span>
+    <span>dualmint.com</span>
+  </div>
+
+</div>
+</body>
+</html>
