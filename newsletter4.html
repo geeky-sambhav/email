@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome to DualMint Newsletter</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, sans-serif;
+        line-height: 1.6;
+        color: #1f2937;
+        background-color: #f9fafb;
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .header {
+        background: linear-gradient(135deg, #e8f3be 0%, #f6f6f2 100%);
+        padding: 40px 20px;
+        text-align: center;
+      }
+
+      .logo {
+        font-size: 28px;
+        font-weight: 700;
+        color: #1f2937;
+        letter-spacing: -0.5px;
+      }
+
+      .logo span {
+        color: #5a6e00;
+      }
+
+      .content {
+        padding: 40px 30px;
+      }
+
+      .greeting {
+        font-size: 24px;
+        font-weight: 600;
+        color: #1f2937;
+        margin-bottom: 16px;
+      }
+
+      .description {
+        font-size: 16px;
+        color: #4b5563;
+        margin-bottom: 24px;
+        line-height: 1.7;
+      }
+
+      .features {
+        background-color: #f3f4f6;
+        border-radius: 8px;
+        padding: 24px;
+        margin: 32px 0;
+      }
+
+      .feature-item {
+        display: flex;
+        margin-bottom: 16px;
+        align-items: flex-start;
+      }
+
+      .feature-item:last-child {
+        margin-bottom: 0;
+      }
+
+      .feature-icon {
+        color: #8aab00;
+        font-weight: 700;
+        margin-right: 12px;
+        min-width: 24px;
+        font-size: 18px;
+      }
+
+      .feature-text {
+        font-size: 15px;
+        color: #4b5563;
+        line-height: 1.6;
+      }
+
+      .cta-section {
+        margin: 32px 0;
+        text-align: center;
+      }
+
+      .cta-button {
+        display: inline-block;
+        background: linear-gradient(135deg, #c7ea36 0%, #b8d820 100%);
+        color: #1f2937;
+        padding: 14px 36px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 16px;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+        box-shadow: 0 4px 12px rgba(199, 234, 54, 0.4);
+      }
+
+      .cta-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(199, 234, 54, 0.55);
+      }
+
+      .secondary-button {
+        display: inline-block;
+        background-color: #ffffff;
+        color: #8aab00;
+        padding: 12px 28px;
+        border: 2px solid #c7ea36;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 15px;
+        margin-left: 12px;
+      }
+
+      .secondary-button:hover {
+        background-color: #f3f4f6;
+      }
+
+      .divider {
+        height: 1px;
+        background-color: #e5e7eb;
+        margin: 32px 0;
+      }
+
+      .footer {
+        background-color: #f9fafb;
+        padding: 32px 30px;
+        text-align: center;
+        border-top: 1px solid #e5e7eb;
+      }
+
+      .footer-text {
+        font-size: 13px;
+        color: #6b7280;
+        margin-bottom: 16px;
+        line-height: 1.6;
+      }
+
+      .social-links {
+        margin-bottom: 16px;
+      }
+
+      .social-link {
+        display: inline-block;
+        width: 36px;
+        height: 36px;
+        background-color: #e5e7eb;
+        border-radius: 50%;
+        line-height: 36px;
+        text-align: center;
+        color: #8aab00;
+        text-decoration: none;
+        margin: 0 8px;
+        font-size: 16px;
+        font-weight: 600;
+      }
+
+      .social-link:hover {
+        background-color: #c7ea36;
+        color: #1f2937;
+      }
+
+      .footer-links {
+        font-size: 12px;
+      }
+
+      .footer-links a {
+        color: #8aab00;
+        text-decoration: none;
+        margin: 0 8px;
+      }
+
+      .footer-links a:hover {
+        text-decoration: underline;
+      }
+
+      .unsubscribe {
+        margin-top: 24px;
+        font-size: 11px;
+        color: #9ca3af;
+      }
+
+      .unsubscribe a {
+        color: #8aab00;
+        text-decoration: none;
+      }
+
+      @media (max-width: 600px) {
+        .container {
+          margin: 0;
+          box-shadow: none;
+        }
+
+        .content {
+          padding: 24px 20px;
+        }
+
+        .greeting {
+          font-size: 20px;
+        }
+
+        .description {
+          font-size: 15px;
+        }
+
+        .cta-button {
+          display: block;
+          margin-bottom: 12px;
+        }
+
+        .secondary-button {
+          display: block;
+          margin-left: 0;
+          margin-top: 12px;
+        }
+
+        .footer {
+          padding: 24px 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <div class="header">
+        <center>
+          <img
+            src="https://explore.dualmint.com/logo-new-light.svg"
+            alt="DualMint Logo"
+            width="190"
+            style="
+              display: block;
+              max-width: 100%;
+              height: auto;
+              font-family:
+                &quot;Space Grotesk&quot;, &quot;Helvetica Neue&quot;, Arial,
+                sans-serif;
+              font-weight: bold;
+              font-size: 20px;
+              color: #1a1a1a;
+            "
+          />
+        </center>
+      </div>
+
+      <!-- Content -->
+      <div class="content">
+        <div class="greeting">Welcome to DualMint!</div>
+
+        <div class="description">
+          Thank you for subscribing to our blog newsletter. We're excited to
+          have you join our community of innovators and explorers.
+        </div>
+
+        <!-- Features -->
+        <div class="features">
+          <div class="feature-item">
+            <div class="feature-icon">✓</div>
+            <div class="feature-text">
+              <strong>Weekly Insights</strong> — Stay updated with the latest
+              trends and analysis from our expert team.
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">✓</div>
+            <div class="feature-text">
+              <strong>Exclusive Updates</strong> — Be the first to know about
+              new features and opportunities on our marketplace.
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">✓</div>
+            <div class="feature-text">
+              <strong>Community Access</strong> — Connect with thousands of
+              like-minded members and grow together.
+            </div>
+          </div>
+        </div>
+
+        <div class="description">
+          Whether you're looking to explore new opportunities or stay informed
+          about industry developments, you've come to the right place.
+        </div>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+          <a href="https://explore.dualmint.com" class="cta-button"
+            >Explore Marketplace</a
+          >
+          <a href="https://dualmint.com" class="secondary-button">Visit Blog</a>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="description" style="font-size: 14px; color: #6b7280">
+          <strong>Need Help?</strong><br />
+          If you have any questions or need support, feel free to reach out to
+          our team at
+          <a
+            href="mailto:support@dualmint.com"
+            style="color: #8aab00; text-decoration: none"
+            >support@dualmint.com</a
+          >
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="footer">
+        <div class="social-links">
+          <a href="#" class="social-link">f</a>
+          <a href="#" class="social-link">𝕏</a>
+          <a href="#" class="social-link">in</a>
+        </div>
+
+        <div class="footer-text">© 2024 DualMint. All rights reserved.</div>
+
+        <div class="footer-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Contact Us</a>
+        </div>
+
+        <div class="unsubscribe">
+          <a href="#">Unsubscribe from this mailing list</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
