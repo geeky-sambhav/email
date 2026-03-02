@@ -82,7 +82,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 22px;
+      margin-bottom: 12px;
     }
     .logo {
       font-family: 'Manrope', sans-serif;
@@ -449,9 +449,12 @@
     }
 
     @media (max-width: 460px) {
+      body { padding-top: 0; }
       .header, .body, .footer { padding-left: 20px; padding-right: 20px; }
       .headline { font-size: 21px; }
-      .stats { flex-direction: column; }
+      .stats { flex-direction: row; }
+      .stat-val { font-size: 16px; }
+      .stat-lbl { font-size: 6.5px; }
       .btn-row { flex-direction: column; }
       .footer-row { flex-direction: column; gap: 10px; }
     }
@@ -461,10 +464,7 @@
 
 <div class="wrapper">
 
-  <div class="top-bar">
-    <span class="top-bar-left">Newsletter · Confirmation</span>
-    <span class="live-badge"><span class="live-dot"></span> Live Feed Active</span>
-  </div>
+  
 
   <div class="card">
 
@@ -472,8 +472,10 @@
     <div class="header">
       <div class="header-accent-bar"></div>
       <div class="logo-row">
-        <div class="logo">DualMint<span class="logo-accent"></span></div>
-        <div class="tag-chip">Boring Blog · CH 01</div>
+        <div class="logo">
+          <img src="https://explore.dualmint.com/logo-new-light.svg" alt="DualMint Logo" width="80" height="40"  />
+          </div>
+        <div class="tag-chip">Boring Blog </div>
       </div>
       <div class="eyebrow">Subscription Confirmed</div>
       <div class="headline">Welcome to <em>boringly</em><br/>reliable insights.</div>
@@ -596,11 +598,9 @@
         </div>
       </div>
       <div class="footer-legal">
-        You're receiving this because you signed up at <strong>dualmint.com</strong>. DualMint Ltd. is not a licensed financial advisor. Content is informational only and does not constitute investment advice. Past yield performance is not indicative of future results.
+        You're receiving this because you signed up at <strong>dualmint.com</strong>. DualMint Ltd. is not a licensed financial advisor. Content is informational only and does not constitute investment advice.
       </div>
-      <div class="footer-unsub">
-        <a href="#">Unsubscribe</a> · <a href="#">Update preferences</a>
-      </div>
+     
     </div>
 
   </div>
